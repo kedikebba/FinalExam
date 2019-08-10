@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/masterlayout.html}">
+<head>
+
+</head>
+<body>
+<th:block layout:fragment="content">
+
+    <div style="padding-top:1em;" class="container">
+
+        <h3 style="padding-top: 50px">List of All Citizens</h3>
+        <hr/>
+        <div style="font-size: 1em">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">SSN</th>
+                    <th scope="col">First Name</th>
+                    <th scope="col">Middle Name</th>
+                    <th scope="col"> Last Name </th>
+                    <th scope="col"> Date Of Birth </th>
+                    <th scope="col"> Yearly Income </th>
+                    <th scope="col"> State Where born </th>
+
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="citizen,iterStat : ${citizens}">
+                    <th scope="row" th:text="${iterStat.count}"></th>
+                    <td th:text="${citizen.socialSecurityNumber}"></td>
+                    <td th:text="${citizen.firstName}"></td>
+                    <td th:text="${citizen.middleName}"></td>
+                    <td th:text="${citizen.lastName}"></td>
+                    <td th:text="${citizen.dateOfBirth}"></td>
+                    <td th:text="${citizen.yearlyIncome}"></td>
+                    <td th:text="${citizen.state.stateDetails}"></td>
+
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+    <div style="padding-top:5px;" class="container">
+
+        <h3>The National Total Yearly Income</h3>
+
+
+        <p>
+        <ul>
+            <li> <i>Sum of all Citizens Income</i> </li>
+        </ul>
+        </p>
+
+
+        <div style="font-size: 1em">
+            <table class="table table-striped">
+                <thead>
+                </thead>
+                <tbody>
+
+                <tr>
+                    <th scope="row" th:text="1"></th>
+                    <td th:text="TNYI"></td>
+                    <td>$<span th:text="${totalIncome}"></span></td>
+
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+
+</th:block>
+</body>
+</html>

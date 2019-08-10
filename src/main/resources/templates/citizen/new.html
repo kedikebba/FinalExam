@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/masterlayout.html}">
+<head>
+
+</head>
+<body>
+<th:block layout:fragment="content">
+
+    <div style="padding-top:1em;" class="container">
+        <div style="margin-top: 70px; margin-bottom: 30px">
+            <span style="font-size: 2em; color: black;">Add New Citizen Form</span>
+        </div>
+
+        <form id="newBookForm" method="post" action="/publicrecords/citizen/new" th:object="${citizen}">
+            <fieldset>
+
+                <div class="row" style="margin-top: 10px">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="socialSecurityNumber">Social Security Number</label>
+                            <span th:if="${#fields.hasErrors('socialSecurityNumber')}" th:errors="*{socialSecurityNumber}"
+                                  class="alert alert-danger"></span>
+                            <input id="socialSecurityNumber" name="socialSecurityNumber" type="text" class="form-control" placeholder="Social Security Number" th:value="${citizen.socialSecurityNumber}">>
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="state">State Where born </label>
+
+                            <select class="form-control" id="state" name="state">
+                                <option value="0">Select State</option>
+                                <option th:each="state : ${states}" th:value="${state.stateId}" th:text="${state.getStateDetails()}"></option>
+                            </select>
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row" style="margin-top: 10px">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <div class="form-group">
+                                <label for="firstName">First Name</label>
+                                <span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"
+                                      class="alert alert-danger"></span>
+                                <input id="firstName" name="firstName" type="text" class="form-control"  aria-describedby="firstNameHelp" placeholder="First Name"
+                                      th:value="${citizen.firstName}">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <div class="form-group">
+                                <label for="middleName">Middle Name</label>
+                                <span th:if="${#fields.hasErrors('firstName')}" th:errors="*{middleName}"
+                                      class="alert alert-danger"></span>
+                                <input id="middleName" name="middleName" type="text" class="form-control"  aria-describedby="middleNameHelp" placeholder="Middle Name"
+                                       th:value="${citizen.middleName}">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <div class="form-group">
+                                <label for="lastName">Last Name</label>
+                                <span th:if="${#fields.hasErrors('firstName')}" th:errors="*{lastName}"
+                                      class="alert alert-danger"></span>
+                                <input id="lastName" name="lastName" type="text" class="form-control"  aria-describedby="lastNameHelp" placeholder="Last Name"
+                                       th:value="${citizen.lastName}">
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <div class="row" style="margin-top: 10px">
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="yearlyIncome">Yearly Income </label>
+                            <input id="yearlyIncome" name="yearlyIncome" type="text" class="form-control"  aria-describedby="yearlyIncomeHelp" placeholder="$0.00"
+                                   th:value="${citizen.yearlyIncome}">
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="dateOfBirth">Date of Birth </label>
+                            <input id="dateOfBirth" name="dateOfBirth" type="date" class="form-control"  aria-describedby="dateOfBirthHelp"
+                                   th:value="${citizen.dateOfBirth}">
+
+                        </div>
+                    </div>
+
+
+                </div>
+
+
+
+                <div style="float:right;">
+                    <button id="btnSubmit" type="submit" class="btn btn-outline-success btn-lg" style="color: #31ccb4">Register Citizen</button>
+                    <a href="/supermarket/product/list" class="btn btn-outline-warning btn-lg" style="color: crimson">Cancel</a>&nbsp;&nbsp;&nbsp;
+
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</th:block>
+</body>
+</html>
